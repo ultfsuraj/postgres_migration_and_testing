@@ -1,4 +1,4 @@
-const { port } = require('pg/lib/defaults');
+
 const app = require('./src/app');
 const pool = require('./src/pool');
 

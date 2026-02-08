@@ -9,7 +9,16 @@ router.get('/users', async (req,res)=>{
     res.send(users)
 });
 
-router.get('/users/:id', async (req,res)=>{});
+router.get('/users/:id', async (req,res)=>{
+    const {id} = req.params;
+    const user = UserRepo.findById(id);
+
+    if(!user){
+        res.status(404).send({message: 'User not found'});
+        return;
+    }
+    res.send(user);
+});
 
 router.post('/users', async (req,res)=>{});
 
