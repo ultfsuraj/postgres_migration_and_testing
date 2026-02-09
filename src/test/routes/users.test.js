@@ -7,16 +7,20 @@ beforeAll(()=>{
     return pool.connect({
         host: 'localhost',
         port: 5432,
-        database: 'socialnetwork2',
+        database: 'socialnetwork2_test',
         user: 'postgres',
         password: 'postgresroot'
     })
 })
 
+afterAll(()=>{
+    return pool.close();
+})
+
 it('create a user ', async ()=>{
     const app = buildApp();
     const startCount = await UserRepo.count();
-    expect(startCount).toBe(0);
+    expect(+startCount).toBe(0);
 
     await request(app).post('/users')
     .send({
@@ -26,5 +30,5 @@ it('create a user ', async ()=>{
     .expect(200)
     
     const finishCount = await UserRepo.count();
-    expect(finishCount).toBe(1);
+    expect(+finishCount).toBe(1);
 })
