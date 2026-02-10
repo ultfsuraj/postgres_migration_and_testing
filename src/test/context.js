@@ -85,6 +85,13 @@ class Context {
         await pool.close();
 
     }
+    
+    async reset(){
+        // delete rows from all tables in schema
+        return pool.query(`
+            DELETE FROM users;
+        `);
+    }
 }
 
 module.exports = Context;

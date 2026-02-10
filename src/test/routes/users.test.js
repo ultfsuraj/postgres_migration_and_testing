@@ -11,6 +11,10 @@ beforeAll(async ()=>{
    
 });
 
+beforeEach(async ()=>{
+    await context.reset();
+})
+
 afterAll(async ()=>{
     return context.close();
 })
